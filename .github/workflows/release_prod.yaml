@@ -1,0 +1,47 @@
+---
+name: "Release to production"
+on:
+  push:
+    branches: main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Check out repository"
+      uses: actions/checkout@v3
+
+    - name: Install Nhost CLI
+      id: install-nhost-cli
+      uses: nhost-actions/install-nhost-cli@v1
+
+    - name: Authenticate with Nhost
+      uses: nhost-actions/authenticate@v1
+      with:
+        pat: ${{ secrets.NHOST_PAT }}
+
+    - name: Configure docker credentials
+      uses: nhost-actions/configure-container-registry@v1
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+
+    - name: Set branch-based environment variables
+      uses: iamtheyammer/branch-env-vars@v1.2.1
+      with:
+        IMAGE: |
+          main:${{ secrets.IMAGE_PROD }}
+          !default:${{ secrets.IMAGE_STAGING }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ${{ env.IMAGE }}:${{ git.sha }}
