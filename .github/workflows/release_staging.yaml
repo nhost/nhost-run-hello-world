@@ -1,0 +1,16 @@
+---
+name: "Release to staging"
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+  uses: ./.github/workflows/workflow_release.yaml
+  secrets:
+    PAT: ${{ secrets.NHOST_PAT }}
+    IMAGE: ${{secrets.IMAGE_STAGING }}:${{ github.sha }}

@@ -1,7 +1,12 @@
 ---
-name: "Release"
+name: "Release Workflow"
 on:
-  push:
+  workflow_call:
+    secrets:
+      PAT:
+        required: true
+      IMAGE:
+        required: true
 
 jobs:
   tests:
@@ -18,7 +23,7 @@ jobs:
     - name: Authenticate with Nhost
       uses: nhost-actions/authenticate@v1
       with:
-        pat: ${{ secrets.NHOST_PAT }}
+        pat: ${{ secrets.PAT }}
 
     - name: Configure docker credentials
       uses: nhost-actions/configure-container-registry@v1
@@ -29,18 +34,10 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-
-    - name: Set branch-based environment variables
-      uses: iamtheyammer/branch-env-vars@v1.2.1
-      with:
-        IMAGE: |
-          main:${{ secrets.IMAGE_PROD }}
-          !default:${{ secrets.IMAGE_STAGING }}
-
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: ${{ env.IMAGE }}:${{ github.sha }}
+        tags: ${{ secrets.IMAGE }}
