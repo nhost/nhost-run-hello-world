@@ -31,6 +31,7 @@ jobs:
     - run: |
         cat ~/.docker/config.json
         echo doc | docker-credential-nhost-login get
+        docker pull registry.ap-southeast-1.nhost.run/21039060-88b3-4382-bc09-86c21fe3156b:123
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
