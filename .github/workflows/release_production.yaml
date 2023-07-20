@@ -12,3 +12,4 @@ jobs:
     secrets:
       PAT: ${{ secrets.NHOST_PAT }}
       IMAGE: ${{secrets.IMAGE_PRODUCTION }}:${{ github.sha }}
+      SERVICE_ID: ${{ secrets.SERVICE_ID_PRODUCTION }}

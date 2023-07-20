@@ -7,6 +7,8 @@ on:
         required: true
       IMAGE:
         required: true
+      SERVICE_ID:
+        required: true
 
 jobs:
   deploy:
@@ -41,3 +43,10 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ secrets.IMAGE }}
+
+    - name: Configure docker credentials
+      uses: nhost-actions/nhost-run-config-deploy@first
+      with:
+        configuration_file: nhost-service.toml
+        service_id: ${{ secrets.SERVICE_ID }}
+        image: ${{ secrets.IMAGE }}
