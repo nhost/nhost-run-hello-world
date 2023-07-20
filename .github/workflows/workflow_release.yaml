@@ -25,10 +25,10 @@ jobs:
       with:
         pat: ${{ secrets.PAT }}
 
-    - run: cat ~/.docker/config.json
-
     - name: Configure docker credentials
       uses: nhost-actions/configure-container-registry@v1
+
+    - run: cat ~/.docker/config.json
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
