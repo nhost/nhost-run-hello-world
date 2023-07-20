@@ -9,7 +9,7 @@ on:
         required: true
 
 jobs:
-  tests:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +24,8 @@ jobs:
       uses: nhost-actions/authenticate@v1
       with:
         pat: ${{ secrets.PAT }}
+
+    - run: cat ~/.docker/config.json
 
     - name: Configure docker credentials
       uses: nhost-actions/configure-container-registry@v1
