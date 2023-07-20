@@ -11,5 +11,5 @@ jobs:
     uses: ./.github/workflows/workflow_release.yaml
     secrets:
       PAT: ${{ secrets.NHOST_PAT }}
-      IMAGE: ${{ secrets.IMAGE_STAGING }}:456
+      IMAGE: ${{ secrets.IMAGE_STAGING }}:${{ github.sha }}
       SERVICE_ID: ${{ secrets.SERVICE_ID_STAGING }}
