@@ -44,7 +44,7 @@ jobs:
         push: true
         tags: ${{ secrets.IMAGE }}
 
-    - name: Configure docker credentials
+    - name: Deploy service configuration
       uses: nhost-actions/nhost-run-config-deploy@first
       with:
         configuration_file: nhost-service.toml
