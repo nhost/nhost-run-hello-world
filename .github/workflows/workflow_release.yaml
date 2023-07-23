@@ -45,7 +45,7 @@ jobs:
         tags: ${{ secrets.IMAGE }}
 
     - name: Deploy service configuration
-      uses: nhost-actions/nhost-run-config-deploy@first
+      uses: nhost-actions/nhost-run-config-deploy@v1
       with:
         configuration_file: nhost-service.toml
         service_id: ${{ secrets.SERVICE_ID }}
