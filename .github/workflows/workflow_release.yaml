@@ -43,6 +43,8 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ secrets.IMAGE }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
 
     - name: Deploy service configuration
       uses: nhost-actions/nhost-run-config-deploy@v1
