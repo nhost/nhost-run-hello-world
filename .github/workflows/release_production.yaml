@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    uses: ./.github/workflows/workflow_release.yaml
+    uses: nhost-actions/workflows/.github/workflows/build-and-release-nhost-run.yaml@first
     secrets:
       PAT: ${{ secrets.NHOST_PAT }}
       IMAGE: ${{ secrets.IMAGE_PRODUCTION }}:${{ github.sha }}
