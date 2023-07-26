@@ -11,7 +11,8 @@ jobs:
     uses: ./.github/workflows/wf_test_and_release.yaml
     with:
       # IMAGE: ${{ secrets.IMAGE_STAGING }}:${{ github.sha }}
+      # SERVICE_ID: ${{ secrets.SERVICE_ID_STAGING }}
       IMAGE: sd:1.2.3
-      SERVICE_ID: ${{ secrets.SERVICE_ID_STAGING }}
+      SERVICE_ID: asdasd
     secrets:
       PAT: ${{ secrets.NHOST_PAT }}
