@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  deploy:
+  test-and-deploy:
     uses: ./.github/workflows/wf_test_and_release.yaml
     secrets:
       PAT: ${{ secrets.NHOST_PAT }}
