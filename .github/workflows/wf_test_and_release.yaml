@@ -33,7 +33,7 @@ jobs:
     needs: [test]
     uses: nhost-actions/workflows/.github/workflows/build-and-release-nhost-run.yaml@first
     with:
-      IMAGE: ${{ inputs.IMAGE }}:${{ github.sha }}
+      IMAGE: ${{ inputs.IMAGE }}
       SERVICE_ID: ${{ inputs.SERVICE_ID }}
     secrets:
       PAT: ${{ secrets.PAT }}
