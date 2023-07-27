@@ -56,7 +56,7 @@ And finally, we have the [configuration file](./nhost-service.toml) for Nhost Ru
 
 To test, build and deploy the service we are going to leverage an already-made [workflow](https://github.com/nhost-actions/workflows#build-and-release-nhost-runyaml). This workflow can do most of the heavy-lifting already; download Nhost CLI, authenticate, configure docker, build the image and push the new configuration to Nhost Run. This means we simply need to extend it to run our tests before running it.
 
-To extend an existing workflow we can write our own workflow and call any already-made workflow we want, adding tasks, dependencies or combining workflows. You can find the result in [./github/workflows/wf_test_and_release.yaml](wf_test_and_release.yaml).
+To extend an existing workflow we can write our own workflow and call any already-made workflow we want, adding tasks, dependencies or combining workflows. You can find the result in [.github/workflows/wf_test_and_release.yaml](.github/workflows/wf_test_and_release.yaml).
 
 As you can see the workflow does the following:
 
@@ -65,3 +65,9 @@ As you can see the workflow does the following:
 3. Calls the workflow [build-and-release-nhost-run.yaml](https://github.com/nhost-actions/workflows#build-and-release-nhost-runyaml) but only after the job "tests" succeeded (`needs: [test]`)
 
 After we have this workflow defined we can call it based on Github events to deploy to one environment or another. For instance, [release_production.yaml](.github/workflows/release_production.yaml) and [release_staging.yaml](.github/workflows/release_staging.yaml)
+
+## Step-by-Step Guide
+
+Ok, now that we know what we are trying to do and we have our workflows we need to configure the github repo and add some parameters. In particular we need:
+
+1. A secret called `NHOST_PAT`. You can head to [Creating a PAT](https://github.com/nhost-actions/authenticate#creating-a-pat) for details on how to get one. Once you have it head to your github repository -> settings ->  Security -> Secrets and Variables -> Actions and click on "New Repository Secret".
