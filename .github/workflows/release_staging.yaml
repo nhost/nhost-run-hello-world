@@ -1,0 +1,16 @@
+---
+name: "Release to staging"
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+
+jobs:
+  test-and-deploy:
+    uses: ./.github/workflows/wf_test_and_release.yaml
+    with:
+      IMAGE: ${{ vars.IMAGE_STAGING }}:${{ github.sha }}
+      SERVICE_ID: ${{ vars.SERVICE_ID_STAGING }}
+    secrets:
+      PAT: ${{ secrets.NHOST_PAT }}
