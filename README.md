@@ -66,8 +66,6 @@ As you can see the workflow does the following:
 
 After we have this workflow defined we can call it based on Github events to deploy to one environment or another. For instance, [release_production.yaml](.github/workflows/release_production.yaml) and [release_staging.yaml](.github/workflows/release_staging.yaml)
 
-## Step-by-Step Guide
+## Step-by-Step Demo
 
-Ok, now that we know what we are trying to do and we have our workflows we need to configure the github repo and add some parameters. In particular we need:
-
-1. A secret called `NHOST_PAT`. You can head to [Creating a PAT](https://github.com/nhost-actions/authenticate#creating-a-pat) for details on how to get one. Once you have it head to your github repository -> settings ->  Security -> Secrets and Variables -> Actions and click on "New Repository Secret".
+To follow a step by step demo head to [DEMO.md](DEMO.md)
