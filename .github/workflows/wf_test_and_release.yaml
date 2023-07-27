@@ -31,7 +31,7 @@ jobs:
 
   deploy:
     needs: [test]
-    uses: nhost-actions/workflows/.github/workflows/build-and-release-nhost-run.yaml@first
+    uses: nhost-actions/workflows/.github/workflows/build-and-release-nhost-run.yaml@v1
     with:
       IMAGE: ${{ inputs.IMAGE }}
       SERVICE_ID: ${{ inputs.SERVICE_ID }}
